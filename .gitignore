@@ -1,1 +1,7 @@
 __pycache__
+*.json
+*.png
+*.gz
+*.xlsx
+*/output
+
