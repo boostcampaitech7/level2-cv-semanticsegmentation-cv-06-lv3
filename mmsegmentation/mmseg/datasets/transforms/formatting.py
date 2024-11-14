@@ -4,7 +4,7 @@ import warnings
 import numpy as np
 from mmcv.transforms import to_tensor
 from mmcv.transforms.base import BaseTransform
-from mmengine.structures import PixelData
+from mmengine.structures import PixelData, BaseDataElement
 
 from mmseg.registry import TRANSFORMS
 from mmseg.structures import SegDataSample
@@ -74,17 +74,22 @@ class PackSegInputs(BaseTransform):
 
         data_sample = SegDataSample()
         if 'gt_seg_map' in results:
-            if len(results['gt_seg_map'].shape) == 2:
-                data = to_tensor(results['gt_seg_map'][None,
-                                                       ...].astype(np.int64))
-            else:
-                warnings.warn('Please pay attention your ground truth '
-                              'segmentation map, usually the segmentation '
-                              'map is 2D, but got '
-                              f'{results["gt_seg_map"].shape}')
-                data = to_tensor(results['gt_seg_map'].astype(np.int64))
+            # if len(results['gt_seg_map'].shape) == 2:
+            #     data = to_tensor(results['gt_seg_map'][None,
+            #                                            ...].astype(np.int64))
+            # else:
+            #     warnings.warn('Please pay attention your ground truth '
+            #                   'segmentation map, usually the segmentation '
+            #                   'map is 2D, but got '
+            #                   f'{results["gt_seg_map"].shape}')
+            # print('b:',results['gt_seg_map'].shape)
+            data = results['gt_seg_map'].astype(np.int64).transpose(2, 0, 1)
+            data = to_tensor(data)
+            
+            # print('a',data.shape)
             gt_sem_seg_data = dict(data=data)
-            data_sample.gt_sem_seg = PixelData(**gt_sem_seg_data)
+            # data_sample.gt_sem_seg = PixelData(**gt_sem_seg_data)
+            data_sample.gt_sem_seg = BaseDataElement(**gt_sem_seg_data)
 
         if 'gt_edge_map' in results:
             gt_edge_data = dict(
@@ -94,7 +99,8 @@ class PackSegInputs(BaseTransform):
 
         if 'gt_depth_map' in results:
             gt_depth_data = dict(
-                data=to_tensor(results['gt_depth_map'][None, ...]))
+                # data=to_tensor(results['gt_depth_map'][None, ...])) #EDIT 
+            data=to_tensor(results['gt_depth_map']))
             data_sample.set_data(dict(gt_depth_map=PixelData(**gt_depth_data)))
 
         img_meta = {}

@@ -1084,6 +1084,8 @@ class Resize(MMCV_Resize):
         for seg_key in results.get('seg_fields', []):
             if results.get(seg_key, None) is not None:
                 if self.keep_ratio:
+                    #TODO
+                    # print(results[seg_key].shape)
                     gt_seg = mmcv.imrescale(
                         results[seg_key],
                         results['scale'],

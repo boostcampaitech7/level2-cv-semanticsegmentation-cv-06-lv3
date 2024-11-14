@@ -1,4 +1,10 @@
-# Copyright (c) OpenMMLab. All rights reserved.
-from .metrics import CityscapesMetric, DepthMetric, IoUMetric
+# # Copyright (c) OpenMMLab. All rights reserved.
+# from .citys_metric import CityscapesMetric
+# from .depth_metric import DepthMetric
+# from .iou_metric import IoUMetric
+# from .custom_metrics import DiceCoefficient
 
-__all__ = ['IoUMetric', 'CityscapesMetric', 'DepthMetric']
+from .metrics import CityscapesMetric, DepthMetric, IoUMetric, DiceCoefficient
+
+
+__all__ = ['IoUMetric', 'CityscapesMetric', 'DepthMetric','DiceCoefficient']
