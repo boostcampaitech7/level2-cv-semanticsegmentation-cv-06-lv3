@@ -1,0 +1,24 @@
+# configs/data_configs/xray_data.yaml
+data:
+  train_data_path: /data/ephemeral/data/train/DCM
+  train_label_path: /data/ephemeral/data/train/outputs_json
+  test_data_path: /data/ephemeral/data/test/DCM
+  pin_memory: true
+  train:
+    batch_size: 8
+    num_workers: 8
+    shuffle: true
+  val:
+    batch_size: 8
+    num_workers: 4
+    shuffle: false
+  test:
+    batch_size: 8
+    num_workers: 4
+    shuffle: false
+  predict:
+    batch_size: 1
+    num_workers: 4
+    shuffle: false
+
+seed: 42

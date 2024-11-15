@@ -1,0 +1,16 @@
+# configs/model_configs/unet_efficientnet.yaml
+
+model:
+  arch: "Unet"
+  encoder_name: "efficientnet-b0"
+  encoder_weights: "imagenet"
+  in_channels: 3
+  classes: 29
+
+loss:
+  use_different_loss: True
+  name: JaccardLoss
+  args:
+    mode: multilabel
+    smooth: 0.1
+

@@ -333,9 +333,6 @@ class BaseDecodeHead(BaseModule, metaclass=ABCMeta):
                     weight=seg_weight,
                     ignore_index=self.ignore_index)
 
-        # print('seg_logits:',seg_logits.shape)
-        # print('seg_label:',seg_label.shape)
-
         loss['acc_seg'] = accuracy(
             seg_logits, seg_label, ignore_index=self.ignore_index)
         return loss

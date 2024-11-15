@@ -61,8 +61,7 @@ class SegDataSample(BaseDataElement):
 
     @gt_sem_seg.setter
     def gt_sem_seg(self, value: PixelData) -> None:
-        # self.set_field(value, '_gt_sem_seg', dtype=PixelData)
-        self.set_field(value, '_gt_sem_seg', dtype=BaseDataElement)
+        self.set_field(value, '_gt_sem_seg', dtype=PixelData)
 
     @gt_sem_seg.deleter
     def gt_sem_seg(self) -> None:

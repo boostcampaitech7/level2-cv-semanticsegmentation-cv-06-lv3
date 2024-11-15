@@ -1,5 +1,3 @@
-# train.py
-
 # Copyright (c) OpenMMLab. All rights reserved.
 import argparse
 import logging
@@ -15,8 +13,8 @@ from mmseg.registry import RUNNERS
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Train a segmentor')
-    parser.add_argument('config', help='/data/ephemeral/home/mmsegmentation/configs/custom_configs/handbone_beit_config.py')
-    parser.add_argument('--work-dir', help='/data/ephemeral/home/mmsegmentation/work_dirs')
+    parser.add_argument('config', help='train config file path')
+    parser.add_argument('--work-dir', help='the dir to save logs and models')
     parser.add_argument(
         '--resume',
         action='store_true',
@@ -32,11 +30,11 @@ def parse_args():
         nargs='+',
         action=DictAction,
         help='override some settings in the used config, the key-value pair '
-             'in xxx=yyy format will be merged into config file. If the value to '
-             'be overwritten is a list, it should be like key="[a,b]" or key=a,b '
-             'It also allows nested list/tuple values, e.g. key="[(a,b),(c,d)]" '
-             'Note that the quotation marks are necessary and that no white space '
-             'is allowed.')
+        'in xxx=yyy format will be merged into config file. If the value to '
+        'be overwritten is a list, it should be like key="[a,b]" or key=a,b '
+        'It also allows nested list/tuple values, e.g. key="[(a,b),(c,d)]" '
+        'Note that the quotation marks are necessary and that no white space '
+        'is allowed.')
     parser.add_argument(
         '--launcher',
         choices=['none', 'pytorch', 'slurm', 'mpi'],
@@ -46,12 +44,6 @@ def parse_args():
     # will pass the `--local-rank` parameter to `tools/train.py` instead
     # of `--local_rank`.
     parser.add_argument('--local_rank', '--local-rank', type=int, default=0)
-    # 추가된 load_from 인자
-    parser.add_argument(
-        '--load-from',
-        type=str,
-        default=None,
-        help='the checkpoint file to load weights from')
     args = parser.parse_args()
     if 'LOCAL_RANK' not in os.environ:
         os.environ['LOCAL_RANK'] = str(args.local_rank)
@@ -94,10 +86,6 @@ def main():
 
     # resume training
     cfg.resume = args.resume
-
-    # load_from 설정 반영
-    if args.load_from is not None:
-        cfg.load_from = args.load_from
 
     # build the runner from config
     if 'runner_type' not in cfg:

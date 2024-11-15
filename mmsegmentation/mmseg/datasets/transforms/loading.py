@@ -13,77 +13,10 @@ from mmcv.transforms import LoadImageFromFile
 from mmseg.registry import TRANSFORMS
 from mmseg.utils import datafrombytes
 
-import cv2
-import json
-
 try:
     from osgeo import gdal
 except ImportError:
     gdal = None
-
-
-@TRANSFORMS.register_module()
-class LoadXRayAnnotations(MMCV_LoadAnnotations):
-
-    def __init__(
-        self,
-        # reduce_zero_label=None,
-        backend_args=None,
-        # imdecode_backend='pillow',
-    ) -> None:
-        super().__init__(
-            with_bbox=False,
-            with_label=False,
-            with_seg=True,
-            with_keypoints=False,
-            # imdecode_backend=imdecode_backend,
-            backend_args=backend_args)
-        # self.reduce_zero_label = reduce_zero_label
-        # if self.reduce_zero_label is not None:
-        #     warnings.warn('`reduce_zero_label` will be deprecated, '
-        #                   'if you would like to ignore the zero label, please '
-        #                   'set `reduce_zero_label=True` when dataset '
-        #                   'initialized')
-        # self.imdecode_backend = imdecode_backend
-
-        self.CLASSES = [
-            'finger-1', 'finger-2', 'finger-3', 'finger-4', 'finger-5',
-            'finger-6', 'finger-7', 'finger-8', 'finger-9', 'finger-10',
-            'finger-11', 'finger-12', 'finger-13', 'finger-14', 'finger-15',
-            'finger-16', 'finger-17', 'finger-18', 'finger-19', 'Trapezium',
-            'Trapezoid', 'Capitate', 'Hamate', 'Scaphoid', 'Lunate',
-            'Triquetrum', 'Pisiform', 'Radius', 'Ulna',
-        ]
-        self.CLASS2IND = {v: i for i, v in enumerate(self.CLASSES)}
-
-    def _load_seg_map(self, results: dict) -> None:
-
-        with open(results['seg_map_path'], "r") as f:
-            annotations = json.load(f)
-        annotations = annotations["annotations"]
-
-        label_shape = results['img_shape'] + (len(self.CLASSES), )
-        label = np.zeros(label_shape, dtype=np.uint8)
-
-        for ann in annotations:
-            c = ann["label"]
-            class_ind = self.CLASS2IND[c]
-            points = np.array(ann["points"])
-            
-            # polygon 포맷을 dense한 mask 포맷으로 바꿉니다.
-            class_label = np.zeros(results['img_shape'], dtype=np.uint8)
-            cv2.fillPoly(class_label, [points], 1)
-            label[..., class_ind] = class_label
-        
-        # label = label.transpose(2, 0, 1)
-
-        results['gt_seg_map'] = label
-        results['seg_fields'].append('gt_seg_map')
-
-    def __repr__(self) -> str:
-        repr_str = self.__class__.__name__
-        repr_str += f'backend_args={self.backend_args})'
-        return repr_str
 
 
 @TRANSFORMS.register_module()
