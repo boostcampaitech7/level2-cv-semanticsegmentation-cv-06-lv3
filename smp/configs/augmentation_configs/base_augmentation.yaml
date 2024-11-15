@@ -1,0 +1,11 @@
+# configs/augmentation_configs/base_augmentation.yaml
+augmentation:
+  use_augmentation: true
+  transforms:
+    - name: Resize
+      params:
+        width: 512
+        height: 512
+    - name: RandomBrightnessContrast
+      params:
+        p: 0.2

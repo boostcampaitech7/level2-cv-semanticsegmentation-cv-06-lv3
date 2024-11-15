@@ -1,0 +1,44 @@
+path:
+  augmentation: /data/ephemeral/hbis/configs/augmentation_configs/base_augmentation.yaml
+  data: /data/ephemeral/hbis/configs/data_configs/xray_data.yaml
+  model: /data/ephemeral/hbis/configs/model_configs/unet_efficientnet.yaml
+
+optimizer:
+  name: Adam
+  lr_backbone: 1e-5
+  params:
+    lr: 1e-4
+    weight_decay: 1e-6
+
+scheduler:
+  name: StepLR
+  params:
+    step_size: 10
+    gamma: 0.7
+
+trainer:
+  max_epochs: 100
+  check_val_every_n_epoch: 5
+  accelerator: gpu
+  devices: 1
+
+callbacks:
+  earlystopping: True
+  earlystopping_params:
+    monitor: val_loss
+    patience: 5
+    mode: min
+  model_checkpoint: True
+  model_checkpoint_params:
+    monitor: val_loss
+    save_top_k: 3
+    mode: min
+
+logger:
+  use_tensorboard: True
+  use_wandb: False
+  project: test
+  name: unet_efficientnet-b0_experiments # {arch}_{encoder}_{experiements}
+
+
+seed: 42  # 시드 값 추가
