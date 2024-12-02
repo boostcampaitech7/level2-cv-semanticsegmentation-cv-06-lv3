@@ -1,0 +1,18 @@
+# configs/total_cfg/total.yaml
+
+# you have to input this config file for train, validation, inference
+# ex) python tools/train.py --config={this_file_name}
+# ex) python tools/validation.py --config={this_file_name} --weights={checkpoint_path}
+# ex) python tools/inference.py --config={this_file_name} --weights={checkpoint_path}
+
+path:
+  augmentation: /data/ephemeral/level2-cv-semanticsegmentation-cv-06-lv3/smp/configs/aug_cfg/total_aug_512.yaml
+  data: /data/ephemeral/level2-cv-semanticsegmentation-cv-06-lv3/smp/configs/data_cfg/512x512.yaml
+  experiments: /data/ephemeral/level2-cv-semanticsegmentation-cv-06-lv3/smp/configs/experiments_cfg/gender+leftright.yaml
+  loss: /data/ephemeral/level2-cv-semanticsegmentation-cv-06-lv3/smp/configs/loss_cfg/single/dice.yaml
+  model: /data/ephemeral/level2-cv-semanticsegmentation-cv-06-lv3/smp/configs/model_cfg/unetplusplus/unetplusplus_hrnet-w40.yaml
+  train: /data/ephemeral/level2-cv-semanticsegmentation-cv-06-lv3/smp/configs/train_cfg/base.yaml
+
+# output file name (inference[validation, test] csv filename)
+# result csv file will be saved in your logs dir
+filename: "test"

@@ -1,0 +1,38 @@
+# configs/experiments_cfg/amp.yaml
+# notes: you can use this config file for auto mixed precision (bf-16) on training model
+
+# interpolation method
+# read F.interpolate method args (document)
+interpolation:
+  enabled: False # default: bilinear
+  mode: bilinear
+
+# sliding window
+# if you use this option, you should set your val, test image_size = train image_size * 2
+sliding_window:
+  enabled: False # default: infer to the same size as train image_size
+  stride: 512
+  patch_size: 1024
+  batch_size: 2
+  notes: "stride는 patch_size/2 이하로 설정하는 것이 권장됨."
+
+# crf postprocessing
+crf:
+  enabled: False # default: false
+  notes: "crf postprocessing (background vs. 1 class)"
+
+# auto mixed preicision float-16
+amp:
+  enabled: True # default: false
+
+# using metadata for multi-task learning
+metadata:
+  gender:
+    enabled: True
+    weights: 0.2
+    notes: "aux classifier로 성별 이진 분류 task를 추가 (multi-task learning)"
+  leftright:
+    enabled: True
+    weights: 0.2
+    notes: "aux classifier로 왼손 및 오른손 이진 분류 task를 추가 (multi-task learning)"
+    descriptions: "사용 시 flip을 증강을 사용하지 않아야 옳은 실험이 됨"

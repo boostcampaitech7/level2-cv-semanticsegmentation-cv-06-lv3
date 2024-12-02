@@ -1,0 +1,11 @@
+# configs/loss_cfg/single/jaccard.yaml
+
+loss:
+  use_different_loss: False
+  components:
+    - name: JaccardLoss
+      args:
+        mode: "multilabel"  # multiclass, binary, multilabel 가능
+        smooth: 1e-6        # smoothing factor
+        eps: 1e-7           # 작은 값 추가 (안정성)
+        ignore_index: -1    # 무시할 클래스 인덱스 (필요 시 설정)

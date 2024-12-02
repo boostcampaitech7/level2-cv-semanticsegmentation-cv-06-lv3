@@ -1,0 +1,13 @@
+__pycache__/
+*.json
+*.png
+*.gz
+*.xlsx
+*/output
+*/wandb/
+*/wandb_logs/*
+*.csv
+*.txt
+*/custom_checkpoint/*
+logs/
+segmentation_models_pytorch

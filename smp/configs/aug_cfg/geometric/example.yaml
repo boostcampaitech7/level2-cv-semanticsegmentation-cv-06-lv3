@@ -1,0 +1,19 @@
+# configs/aug_cfg/geometric/example.yaml
+
+# If the rotation strength is too strong, fingertips may be lost.
+# HorizontalFlip empirically shows performance improvement.
+
+augmentation:
+  use_augmentation: True
+  transforms:
+    - name: Resize
+      params:
+        width: 512
+        height: 512
+    - name: Rotate
+      params:
+        limit: 15
+        p: 0.5
+    - name: HorizontalFlip
+      params:
+        p: 0.5

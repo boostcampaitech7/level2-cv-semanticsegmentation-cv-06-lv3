@@ -1,0 +1,9 @@
+# configs/loss_cfg/single/soft_bce.yaml
+
+loss:
+  use_different_loss: False
+  components:
+    - name: SoftBCEWithLogitsLoss
+      args:
+        reduction: "mean"  # 'mean', 'sum', 'none' 중 선택
+        smooth_factor: 0.01 # label smoothing factor (0~1)

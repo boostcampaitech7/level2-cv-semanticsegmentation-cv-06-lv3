@@ -1,0 +1,17 @@
+# configs/model_cfg/unetplusplus/unetplusplus_efficientnet-b7.yaml
+
+model:
+  arch: "UnetPlusPlus"
+  encoder_name: "efficientnet-b7"
+  encoder_weights: "imagenet"
+  in_channels: 3
+  classes: 29
+
+metadata:
+  description: "EfficientNet 기반의 UnetPlusPlus 모델"
+  image_size: "1024x1024"
+  batch_size: "2"
+  version: "1.0"
+  author: "andantecode"
+  date: "2024-11-23"
+

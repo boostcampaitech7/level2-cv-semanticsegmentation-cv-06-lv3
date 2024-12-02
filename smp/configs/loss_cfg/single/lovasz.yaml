@@ -1,0 +1,9 @@
+# configs/loss_cfg/single/lovasz.yaml
+
+loss:
+  use_different_loss: False
+  components:
+    - name: LovaszLoss
+      args:
+        mode: "multilabel"  # multiclass, binary, multilabel 가능
+        per_image: false    # true면 각 이미지를 별도로 계산

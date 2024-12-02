@@ -1,0 +1,10 @@
+# configs/loss_cfg/single/dice.yaml
+
+loss:
+  use_different_loss: False
+  components:
+    - name: DiceLoss
+      args:
+        mode: multilabel
+        smooth: 0.0001
+        eps: 0.000001
