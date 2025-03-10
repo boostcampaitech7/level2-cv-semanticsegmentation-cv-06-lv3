@@ -1,0 +1,23 @@
+# configs/aug_cfg/oneofex/resize.yaml
+
+# Apply randomresizedcrop with probability
+# You can use this config file to respond to images of various scales.
+
+augmentation:
+  use_augmentation: True
+  transforms:
+    - name: OneOf
+      params:
+        p: 1.0
+        transforms:
+        - name: Resize
+          params:
+            width: 512
+            height: 512
+            p: 0.7        # Focus a little more on the original image
+        - name: RandomResizedCrop
+          params:
+            width: 512
+            height: 512
+            scale: [0.8, 1.0]
+            p: 0.3

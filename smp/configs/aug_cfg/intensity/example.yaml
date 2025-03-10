@@ -1,0 +1,22 @@
+# configs/aug_cfg/intensity/example.yaml
+
+augmentation:
+  use_augmentation: True
+  transforms:
+    - name: Resize
+      params:
+        width: 512
+        height: 512
+    - name: Blur
+      params:
+        blur_limit: 3
+        p: 0.2
+    - name: RandomBrightnessContrast
+      params:
+        brightness_limit: 0.2
+        contrast_limit: 0.1
+        p: 0.5
+    - name: CLAHE
+      params:
+        clip_limit: 2
+        p: 0.5    

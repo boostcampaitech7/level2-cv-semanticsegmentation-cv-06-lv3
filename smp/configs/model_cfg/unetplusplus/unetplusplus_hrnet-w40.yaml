@@ -1,0 +1,17 @@
+# configs/model_cfg/unetplusplus/unetplusplus_hrnet-w64.yaml
+
+model:
+  arch: "UnetPlusPlus"
+  encoder_name: "tu-hrnet_w40"
+  encoder_weights: "imagenet"
+  in_channels: 3
+  classes: 29
+
+metadata:
+  description: "HRNet 기반의 UnetPlusPlus 모델"
+  image_size: "512x512"
+  batch_size: "8"
+  version: "1.0"
+  author: "andantecode"
+  date: "2024-11-22"
+

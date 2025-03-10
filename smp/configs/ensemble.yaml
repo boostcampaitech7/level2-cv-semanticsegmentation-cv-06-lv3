@@ -1,0 +1,46 @@
+# this is config file for ensemble_inference
+
+# csv file paths for ensemble
+csv_paths: [
+  'path1',
+  'path2',
+  'path3',
+]
+
+# ensemble result csv filename ({save_filename}_{datetime}.csv)
+save_filename: test
+
+# The 'weights' section defines the class-specific weights for model predictions.
+# Each class can have different weights assigned to the models.
+# Leave the weight lists empty for default equal weighting across all models.
+
+weights:
+  finger-1: []        # Weight for finger 1 predictions
+  finger-2: []        # Weight for finger 2 predictions
+  finger-3: []        # Weight for finger 3 predictions
+  finger-4: []        # Weight for finger 4 predictions
+  finger-5: []        # Weight for finger 5 predictions
+  finger-6: []        # Weight for finger 6 predictions
+  finger-7: []        # Weight for finger 7 predictions
+  finger-8: []        # Weight for finger 8 predictions
+  finger-9: []        # Weight for finger 9 predictions
+  finger-10: []       # Weight for finger 10 predictions
+  finger-11: []       # Weight for finger 11 predictions
+  finger-12: []       # Weight for finger 12 predictions
+  finger-13: []       # Weight for finger 13 predictions
+  finger-14: []       # Weight for finger 14 predictions
+  finger-15: []       # Weight for finger 15 predictions
+  finger-16: []       # Weight for finger 16 predictions
+  finger-17: []       # Weight for finger 17 predictions
+  finger-18: []       # Weight for finger 18 predictions
+  finger-19: []       # Weight for finger 19 predictions
+  Trapezium: []       # Weight for Trapezium predictions
+  Trapezoid: []       # Weight for Trapezoid predictions
+  Capitate: []        # Weight for Capitate predictions
+  Hamate: []          # Weight for Hamate predictions
+  Scaphoid: []        # Weight for Scaphoid predictions
+  Lunate: []          # Weight for Lunate predictions
+  Triquetrum: []      # Weight for Triquetrum predictions
+  Pisiform: []        # Weight for Pisiform predictions
+  Radius: []          # Weight for Radius predictions
+  Ulna: []            # Weight for Ulna predictions

@@ -1,0 +1,12 @@
+# configs/loss_cfg/single/tversky.yaml
+
+loss:
+  use_different_loss: False
+  components:
+    - name: TverskyLoss
+      args:
+        mode: "multiclass"  # multiclass, binary, multilabel 가능
+        alpha: 0.7          # False Positive 가중치
+        beta: 0.3           # False Negative 가중치
+        smooth: 0.000001        # smoothing factor
+        ignore_index: -1    # 무시할 클래스 인덱스 (필요 시 설정)

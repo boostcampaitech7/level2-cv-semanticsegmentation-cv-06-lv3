@@ -1,0 +1,16 @@
+# configs/model_configs/unet_efficientnet.yaml
+
+model:
+  arch: "UnetPlusPlus"
+  encoder_name: "timm-res2net50_26w_4s"
+  encoder_weights: "imagenet"
+  in_channels: 3
+  classes: 29
+  
+metadata:
+  description: "Res2net 기반의 UnetPlusPlus 모델"
+  image_size: "1024x1024"
+  batch_size: "1"
+  version: "1.0"
+  author: "taeyoung1005"
+  date: "2024-11-23"

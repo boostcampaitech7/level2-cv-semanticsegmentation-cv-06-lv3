@@ -1,0 +1,9 @@
+# configs/aug_cfg/geometric/base.yaml
+
+augmentation:
+  enabled: True
+  transforms:
+    - name: Resize
+      params:
+        width: 512
+        height: 512

@@ -1,0 +1,41 @@
+# configs/aug_cfg/total_aug_1024.yaml
+
+augmentation:
+  use_augmentation: True
+  transforms:
+    - name: OneOf
+      params:
+        p: 1.0
+        transforms:
+        - name: Resize
+          params:
+            width: 1024
+            height: 1024
+            p: 0.7
+        - name: RandomResizedCrop
+          params:
+            width: 1024
+            height: 1024
+            scale: [0.8, 1.0]
+            p: 0.3
+    - name: Blur
+      params:
+        blur_limit: 3
+        p: 0.2
+    - name: RandomBrightnessContrast
+      params:
+        brightness_limit: 0.2
+        contrast_limit: 0.1
+        p: 0.5
+    - name: CLAHE
+      params:
+        clip_limit: 2
+        p: 0.5
+    - name: Rotate
+      params:
+        limit: 15
+        p: 0.5
+    - name: HorizontalFlip
+      params:
+        p: 0.5
+    
